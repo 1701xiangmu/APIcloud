@@ -26,11 +26,7 @@
     #head h2{
         font-size: 20px; height: 44px; line-height: 44px; margin: 0em; color: #fff;
     }
-      #mai{
-        -webkit-box-flex: 1;
-        -webkit-flex: 1;
-        flex: 1;
-    }
+
   /*  #footer{
         height: 30px; line-height: 30px;
         background-color: #81a9c3;
@@ -72,9 +68,6 @@
       <div id="route">
           <p tapmode onclick="fnOpenRegisterWin();">跳转</p>
       </div>
-      <div id="mai" class="flex-con">
-
-      </div>
 
         <!-- <div id="header">
             <h1>APICloud</h1>
@@ -114,22 +107,22 @@
     //
     //     var year = $api.byId('year');
     //     year.innerHTML = new Date().getFullYear();
-    var header=$api.byId("head");
-    $api.fixStatusBar(header);//拿到状态栏的高度
-    var headerPos=$api.offset(header);
-    var route=$api.byId("route");
-    var routeH=$api.offset(route);
-    var mai = $api.byId('mai');
-    var maiPos = $api.offset(mai);
-    api.openFrame({
-        name: 'ma',
-        url: 'html/main.html',
-        rect: {
-            x: 0,
-            y: headerPos.h+routeH.h,
-            w: 'auto',
-            h: maiPos.h
-        }
+    // var header=$api.byId("head");
+    // $api.fixStatusBar(header);//拿到状态栏的高度
+    // var headerPos=$api.offset(header);
+    // var route=$api.byId("route");
+    // var routeH=$api.offset(route);
+    // var mai = $api.byId('mai');
+    // var maiPos = $api.offset(mai);
+    // api.openFrame({
+    //     name: 'ma',
+    //     url: 'html/main.html',
+    //     rect: {
+    //         x: 0,
+    //         y: headerPos.h+routeH.h,
+    //         w: 'auto',
+    //         h: maiPos.h
+    //     }
     //     pageParam: {
     //         name: 'test'
     //     },
@@ -137,7 +130,7 @@
     //     bgColor: 'rgba(0,0,0,0)',
     //     vScrollBarEnabled: true,
     //     hScrollBarEnabled: true
-     });
+  //   });
 
      function fnOpenRegisterWin () {
           api.openWin({
