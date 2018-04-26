@@ -59,6 +59,7 @@
       line-height: 40px;
       font-size: 24px;
       background: orange;
+      cursor: pointer;
     }
     </style>
 </head>
@@ -68,7 +69,7 @@
         <h2>第一个demo</h2>
       </div>
       <div id="route">
-          <p onclick="fnOpenRegisterWin();">跳转</p>
+          <p tapmode onclick="fnOpenRegisterWin();">跳转</p>
       </div>
       <div id="mai" class="flex-con">
 
@@ -113,7 +114,7 @@
     //     var year = $api.byId('year');
     //     year.innerHTML = new Date().getFullYear();
     var header=$api.byId("head");
-    $api.fixStatusBar(header);
+    $api.fixStatusBar(header);//拿到状态栏的高度
     var headerPos=$api.offset(header);
     var mai = $api.byId('mai');
     var maiPos = $api.offset(mai);
@@ -137,11 +138,11 @@
 
      function fnOpenRegisterWin () {
           api.openWin({
-            //name: 'register',
+              name: 'register',
              url: 'html/register.html'
-              // pageParam: {
-              //     name: 'test'
-              // }
+               pageParam: {
+                   name: 'test'
+               }
           });
       }
 
@@ -275,7 +276,7 @@
                 }
             }],
             selectedIndex: 0
-        }, function(ret, err) {}
+        }, function(ret, err) {
 
 });
 
