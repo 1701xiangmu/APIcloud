@@ -44,6 +44,21 @@
     .flex-con{
       overflow: auto
     }*/
+    #route{
+      width:100%;
+      display: flex;
+      text-align: center;
+      background-color: pink;
+    }
+    #route p{
+      display: inline-block;
+      width: 80px;
+      height:40px;
+      text-align: center;
+      line-height: 40px;
+      font-size: 24px;
+      background: orange;
+    }
     </style>
 </head>
 <body>
@@ -53,6 +68,9 @@
       </div>
       <div id="mai" class="flex-con">
 
+      </div>
+      <div id="route">
+          <p onclick="fnOpenRegisterWin ()">跳转</p>
       </div>
         <!-- <div id="header">
             <h1>APICloud</h1>
@@ -115,7 +133,15 @@
     //     hScrollBarEnabled: true
      });
 
-
+     function fnOpenRegisterWin () {
+          api.openWin({
+            //name: 'register',
+             url: 'html/register.html',
+              // pageParam: {
+              //     name: 'test'
+              // }
+          });
+      }
 
     var NVTabBar = api.require('NVTabBar');
         NVTabBar.open({
