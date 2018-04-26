@@ -132,16 +132,6 @@
     //     hScrollBarEnabled: true
   //   });
 
-     function scannerOpen(){
-       alert(0);
-          api.openWin({
-              name: 'register',
-             url: './html/register.html',
-               pageParam: {
-                   name: 'test'
-               }
-          });
-      };
 
     var NVTabBar = api.require('NVTabBar');
         NVTabBar.open({
@@ -278,5 +268,16 @@
 });
 
     };
+    function scannerOpen(){
+      alert(0);
+         api.openWin({
+             name: 'register',
+            url: './html/register.html',
+              pageParam: {
+                  name: 'test'
+              }
+         });
+     };
+
 </script>
 </html>
