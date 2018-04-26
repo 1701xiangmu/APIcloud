@@ -66,7 +66,7 @@
         <h2>第一个demo</h2>
       </div>
       <div id="route">
-          <p tapmode onclick="fnOpenRegisterWin();">跳转</p>
+          <p tapmode onclick="scannerOpen();">跳转</p>
       </div>
 
         <!-- <div id="header">
@@ -132,10 +132,10 @@
     //     hScrollBarEnabled: true
   //   });
 
-     function fnOpenRegisterWin () {
+     function scannerOpen(){
           api.openWin({
               name: 'register',
-             url: 'html/register.html',
+             url: './html/register.html',
                pageParam: {
                    name: 'test'
                }
