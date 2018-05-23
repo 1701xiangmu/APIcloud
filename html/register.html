@@ -8,7 +8,6 @@
     <link rel="stylesheet" type="text/css" href="../css/api.css" />
 	<style>
 		#con{
-			margin: 10px;
 			font-size: 24px;
 		}
 		/*ul{
@@ -22,27 +21,149 @@
 		}*/
     #sys-info{
       width: 100%;
-      display: flex;
       background-color: #ccc;
     }
-    #sys-info P{
-      text-indent: 2em;
+    #sys-info ul{
+      width: 100%;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: flex;
+      justify-content:flex-start;
+    }
+    #sys-info ul li{
+      width: 25%;
+      border:1px solid red;
+      height:40px;
+      text-align: center;
+      line-height: 40px;
       font-size: 24px;
       color:red;
+      cursor: pointer;
     }
+      /*#sys-info ul li a{
+        width: 100%;
+
+      }*/
+      /*#content{
+        border:1px solid blue;
+        flex: 1;
+        -webkit-flex: 1;
+        -webkit-box-flex: 1;
+      }*/
+    #sys-info .fontColor{
+        color:blue;
+      }
+      #con span{
+        font-size: 36px;
+        color:orange;
+      }
+      /*#footer{
+        border:1px solid red;
+        position: fixed;
+        bottom: 0;
+        left:0;
+      }*/
 	</style>
 </head>
 <body>
-    <label id="con">Hello APP</label>
+  <!-- //api.closeWin();返回上一页 -->
+    <label id="con"><span tapmode onclick="api.closeWin();" ><</span>Hello APP</label>
 	<div id='sys-info'>
-	  <p>你77777777777777777777777777777777777777777777你好吗？你好吗？你好吗？你好吗？</p>
-      <p>你好吗？你好吗？你好吗？你好吗？你好吗？你好吗？你好吗？你好吗？你好吗？你好吗？你好吗？你好吗？你好吗？你好吗？你好吗？你好吗？</p>
-        <p>你好吗？你好吗？你好吗？你好吗？你好吗？你好吗？你好吗？你好吗？你好吗？你好吗？你好吗？你好吗？你好吗？你好吗？你好吗？你好吗？</p>
-          <p>你好吗？你好吗？你好吗？你好吗？你好吗？你好吗？你好吗？你好吗？你好吗？你好吗？你好吗？你好吗？你好吗？你好吗？你好吗？你好吗？</p>
+	    <ul id="menu">
+	      <li tapmode class="fontColor" onclick="setgroud(0);">点我</li>
+          <li tapmode onclick="setgroud(1);">图箱</li>
+            <li tapmode onclick="setgroud(2);">加空11</li>
+              <li tapmode onclick="setgroud(3);">鼎折</li>
+	    </ul>
 	</div>
+   <!-- <div id="footer">
+
+   </div> -->
 </body>
 <script type="text/javascript" src="../script/api.js"></script>
 <script type="text/javascript">
+    apiready=function(){
+        var con = $api.byId('con');
+          $api.fixStatusBar(con);
+        var conH = $api.offset(con).h;
+        var menu = $api.byId('sys-info');
+        var menuH = $api.offset(menu).h;
+        // var content = $api.byId('content');
+        // var contentH = $api.offset(content).h;
+         menuList = $api.domAll(menu, 'li');
+        var frames=[];
+        for(var i=0;i<menuList.length;i++){
+          frames.push({
+            name:'me'+i,
+            url:'./me'+i+'.html'
+          })
+        }
+        //openFrameGroup子组件切换
+        api.openFrameGroup ({
+            name: 'registerGroup',
+            background: '#fff',
+            scrollEnabled:true,
+            rect: {
+                 x: 0,
+                 y: conH+menuH,
+                 w: 'auto',
+                 h: api.winHeight-(conH+menuH)-60
+            },
+            index: 0,
+            frames: frames
+        }, function(ret, err){
+            //if( ret ){
+             fontcolor(ret.index);//当滑动时也改变导航字体颜色
+                // alert( JSON.stringify( ret ) );
+            // }else{
+            //      alert( JSON.stringify( err ) );
+            // }
+       });
 
+
+      //  //加载某个模块
+       api.openFrame({
+           name: 'footer',
+           url: './footer.html',
+           rect: {
+               x: 0,
+               y: api.winHeight-60,
+               w: 'auto',
+               h: 60
+           },
+          //  pageParam: {
+          //      name: 'footer'
+          //  },
+          //   bounces: true,
+          //  bgColor: 'rgba(0,0,0,0)',
+          //  vScrollBarEnabled: true,
+          //  hScrollBarEnabled: true
+      });
+
+
+
+
+    }
+
+    function setgroud(index_){
+      fontcolor(index_);
+      api.setFrameGroupIndex({
+          name: 'registerGroup',//要和上面名字相同
+          index: index_,
+          scroll: true
+      });
+
+    }
+      var menuList;
+      function fontcolor(index_){
+        for(var i=0;i<menuList.length;i++){
+            if(index_==i){
+                $api.addCls(menuList[i], 'fontColor');
+            }else{
+              $api.removeCls(menuList[i], 'fontColor');
+
+            }
+        }
+      }
 </script>
 </html>

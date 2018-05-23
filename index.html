@@ -70,12 +70,12 @@
 <body>
     <div id="wrap">
       <div id="head">
-        <h2>第一个demo</h2>
+        <h2 onclick="scannerOpen()">点击扫描二维码</h2>
       </div>
       <div id="route">
-          <p tapmode onclick="scannerOpen();">跳转</p>
+          <p tapmode onclick="listOpen();">跳转</p>
       </div>
-      <div id="mai"></div>
+      <!-- <div id="mai"></div> -->
         <!-- <div id="header">
             <h1>APICloud</h1>
         </div>
@@ -121,6 +121,7 @@
     var routeH=$api.offset(route);
     var mai = $api.byId('mai');
     var maiPos = $api.offset(mai);
+    //加载某个模块
     api.openFrame({
         name: 'mai',
         url: 'html/main.html',
@@ -128,7 +129,7 @@
             x: 0,
             y: headerPos.h+routeH.h,
             w: 'auto',
-            h: maiPos.h
+            h: 'auto'
         },
         // pageParam: {
         //     name: 'test'
@@ -275,8 +276,8 @@
 });
 
     };
-    function scannerOpen(){
-      alert(0);
+    function listOpen(){
+          //openWin跳转页面
          api.openWin({
              name: 'register',
             url: './html/register.html',
@@ -285,6 +286,19 @@
               }
          });
      };
+    function scannerOpen(){
+      api.confirm({
+         "title":"APIcloud",
+         "msg":"是否开启二维码",
+         "buttons":["打开","取消"]
+     },function(ret,err){
+         if(ret.buttonIndex==1){
+             var scanner = api.require("scanner");
+             scanner.open()
+         }else{
 
+         }
+     });
+    }
 </script>
 </html>

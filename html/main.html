@@ -43,7 +43,17 @@
 </body>
 <script type="text/javascript" src="../script/api.js"></script>
 <script type="text/javascript">
-    // apiready = function(){
+     apiready = function(){
+       var param = {};
+    param.loadingImgae = 'widget://image/refresh.png'; //定义刷新小箭头的图片
+    param.bgColor = '#ccc';                            //定义下拉刷新区域的背景
+    param.textColor = '#fff';                          //定义下拉刷新提示文字的颜色
+    param.textDown = '下拉试试...';                     //定义下拉刷新文字
+    param.textUp = '松开试试...';                       //定义松开刷新文字
+    param.showTime = true;                             //定义是否显示最后一次刷新时间
+    api.setRefreshHeaderInfo(param, function(ret, err){
+          toDoRequest();
+    });
 		// var ver = api.version;
 		// var sType = api.systemType;
 		// var sVer = api.systemVersion;
@@ -75,7 +85,39 @@
 		// str += '</ul>';
     //
 		// $api.byId('sys-info').innerHTML = str;
+    api. addEventListener({name:'scrolltobottom'}, function(ret, err){
+            //refresh event callback
+            param.loadingImgae = 'widget://image/refresh.png'; //定义刷新小箭头的图片
+            param.bgColor = '#ccc';                            //定义下拉刷新区域的背景
+            param.textColor = '#fff';                          //定义下拉刷新提示文字的颜色
+            param.textDown = '刷新new试试...';                     //定义下拉刷新文字
+            param.textUp = '松开试试...';                       //定义松开刷新文字
+            param.showTime = true;
+            toDoRequest();
+        });
+    };
 
-  ///  };
+
+    function toDoRequest(){
+      var con = $api.byId('con');
+      var haha = con.text;
+    api.ajax({
+        url:'http://xxx.xxx.xxx',
+        method:'post',
+        header:{
+          "X-APICloud-AppId":"Ahjj233311",
+          "X-APICloud-AppKey":"85sdfs5212sfsfs.54544"
+        },
+        data: {
+          values: {
+              "name": haha//传得参
+          },
+
+        }
+    }, function(ret, err){
+        api.refreshHeaderLoadDone();        //复位下拉刷新
+        //do your business
+    });
+}
 </script>
 </html>
